@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>GBP to PLN exchange</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../static/style.css">
+    
+</head>
+
+<body>
+    <div class="container">
+        <div class="child">
+            <div class="currency">
+                <label for="gbp">You send</label>
+                <p>GBP: <input id="gbp" type="number"  class="icon" min="0" step="any" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107
+                    && event.keyCode !== 189 && event.keyCode !== 187"></p>
+            </div>
+            
+            <div class="currency">
+                <label for="pln">They receive</label>
+                <p>PLN: <input id="pln" type="number" min="0" step="any" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 
+                    && event.keyCode !== 189 && event.keyCode !== 187"></p>
+
+            </div>
+            <p id="rate"></p>
+            <p>No transfer fee</p>
+        
+
+        </div>
+    </div>
+    
+    <script th:inline="javascript">
+        var exchangeRate = /*[[${exchangeRate}]]*/ "";
+        document.getElementById("rate").innerHTML = "1 GPB = "+(exchangeRate).toFixed(2)+" PLN";
+        let currencyGBP = document.getElementById('gbp');
+        let currencyPLN = document.getElementById('pln');
+
+        currencyGBP.addEventListener('input', calculatePLN);
+        currencyPLN.addEventListener('input', calculateGBP);
+
+        function calculatePLN() {
+            currencyPLN.value = (currencyGBP.value * exchangeRate).toFixed(2);
+        }
+
+        function calculateGBP() {
+            currencyGBP.value = (currencyPLN.value / exchangeRate).toFixed(2);
+        }
+    </script> 
+
+</body>
+</html>
