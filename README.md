@@ -1,7 +1,7 @@
 # Exchange
 Web site with task: https://exchange-production.up.railway.app/
 
-		Warning: this link can be outdated since Saturday, 1 April 2023 (I have time limit for using this server)
+		Warning: this link can be unavailable since Thursday, 20 April 2023 (I have time limit for using this server)
 		
 
 
