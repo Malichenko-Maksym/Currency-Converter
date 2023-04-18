@@ -1,65 +1,52 @@
 <!DOCTYPE HTML>
-<html lang="us" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Currency Converter</title>
-    <link rel="shortcut icon" href="../static/img/money-mouth-face-120.png">
-    <link rel="stylesheet" href="../static/css/style.css">
+    <title>GBP to PLN exchange</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../static/style.css">
+    
 </head>
 
 <body>
-    <!-- ===== HEADER ===== -->
-    <header>
-        <a href="#">
-            <div class="img-container">
-                <img src="../static/img/money-mouth-face-120.png">
+    <div class="container">
+        <div class="child">
+            <div class="currency">
+                <label for="gbp">You send</label>
+                <p>GBP: <input id="gbp" type="number"  class="icon" min="0" step="any" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107
+                    && event.keyCode !== 189 && event.keyCode !== 187"></p>
             </div>
-            <h1>CURRENCY CONVERTER</h1>
-        </a>
-    </header>
+            
+            <div class="currency">
+                <label for="pln">They receive</label>
+                <p>PLN: <input id="pln" type="number" min="0" step="any" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 
+                    && event.keyCode !== 189 && event.keyCode !== 187"></p>
 
-    <!-- ===== MAIN ===== -->
-    <main>
-        <button id="dark-mode-switch" class="dark-mode-switch" type="button" onclick="switchDarkMode()">🌝</button>
-
-        <div class="container">
-            <h2>British Pounds to Polish Zloty Converter</h2>
-
-            <div class="converter">
-                <div class="currency">
-                    <p>GBP:</p>
-                    <input id="gbp" type="number" min="0" step="any" placeholder="Enter a value..." onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107
-                    && event.keyCode !== 189 && event.keyCode !== 187">
-                </div>
-
-                <p class="arrows">⇄</p>
-
-                <div class="currency">
-                    <p>PLN:</p>
-                    <input id="pln" type="number" min="0" step="any" placeholder="Enter a value..." onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107 
-                    && event.keyCode !== 189 && event.keyCode !== 187">
-                </div>
             </div>
+            <p id="rate"></p>
+            <p>No transfer fee</p>
+        
 
-            <div class="converter-info">
-                <div class="current-rate">
-                    <p>Current rate:</p>
-                    <p id="rate"></p>
-                </div>
-                <p class="transfer-fee">(Transfer fee not included)</p>
-            </div>
         </div>
-    </main>
+    </div>
+    
+    <script th:inline="javascript">
+        var exchangeRate = /*[[${exchangeRate}]]*/ "";
+        document.getElementById("rate").innerHTML = "1 GPB = "+(exchangeRate).toFixed(2)+" PLN";
+        let currencyGBP = document.getElementById('gbp');
+        let currencyPLN = document.getElementById('pln');
 
-    <!-- ===== FOOTER ===== -->
-    <footer>
-        <p class="copyright">Copyright &copy; 1969 The Beetles</p>
-    </footer>
+        currencyGBP.addEventListener('input', calculatePLN);
+        currencyPLN.addEventListener('input', calculateGBP);
 
-    <!-- ===== SCRIPT ===== -->
-    <script th:inline="javascript" src="../static/js/main.js"></script>
+        function calculatePLN() {
+            currencyPLN.value = (currencyGBP.value * exchangeRate).toFixed(2);
+        }
+
+        function calculateGBP() {
+            currencyGBP.value = (currencyPLN.value / exchangeRate).toFixed(2);
+        }
+    </script> 
+
 </body>
-
 </html>
