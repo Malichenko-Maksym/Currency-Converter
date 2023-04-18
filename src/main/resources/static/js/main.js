@@ -15,12 +15,6 @@ function calculateGBP() {
     currencyGBP.value = (currencyPLN.value / exchangeRate).toFixed(2);
 }
 
-function turnOnDarkModeAtStart() {
-    if (sessionStorage.getItem("isDarkModeOn") == "true") {
-
-    }
-}
-
 
 // Dark Mode
 function turnOnDarkMode() {
