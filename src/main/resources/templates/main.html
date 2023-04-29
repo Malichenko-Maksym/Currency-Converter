@@ -5,7 +5,6 @@
     <title>GBP to PLN exchange</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="../static/style.css">
-
 </head>
 
 <body>
@@ -13,8 +12,7 @@
     <div class="child">
         <div class="currency">
             <label>You send</label>
-            <p><select id="firstCur" name="firstCur" onchange="firstSelected()"  th:action="@{/firstCur}" th:object="${cur}">
-                <!--      getFirstExRate()  -->
+            <p><select id="firstCur" name="firstCur" onchange="firstSelected()">
                 <option disabled selected value="none">First currency</option>
                 <option value="usd" >USD</option>
                 <option value="eur">EUR</option>
@@ -31,7 +29,6 @@
         <div class="currency">
             <label >They receive</label>
             <p> <select id="secondCur" name="secondCur" onchange="secondSelected()">
-                <!--      getSecondExRate()  -->
                 <option disabled selected value="none">Second currency</option>
                 <option value="usd">USD</option>
                 <option value="eur">EUR</option>
@@ -50,6 +47,8 @@
     </div>
 </div>
 
+<script src="static/scripts/code.js"> </script>
+<!--
 <script th:inline="javascript">
     var request = new XMLHttpRequest();
     var ex1;
@@ -125,7 +124,7 @@
         request.send(JSON.stringify({chosenSecondCur : secondCurSelection.value}));
     }
 
-</script>
+</script> -->
 
 </body>
 </html>
