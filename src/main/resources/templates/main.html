@@ -13,7 +13,8 @@
     <div class="child">
         <div class="currency">
             <label>You send</label>
-            <p><select id="firstCur" name="firstCur" onchange="doSm1()" th:action="@{/firstCur}" th:object="${cur}">
+            <p><select id="firstCur" name="firstCur" onchange="firstSelected()"  th:action="@{/firstCur}" th:object="${cur}">
+                <!--      getFirstExRate()  -->
                 <option disabled selected value="none">First currency</option>
                 <option value="usd" >USD</option>
                 <option value="eur">EUR</option>
@@ -29,7 +30,8 @@
 
         <div class="currency">
             <label >They receive</label>
-            <p> <select id="secondCur" name="secondCur" onchange="doSm2()">
+            <p> <select id="secondCur" name="secondCur" onchange="secondSelected()">
+                <!--      getSecondExRate()  -->
                 <option disabled selected value="none">Second currency</option>
                 <option value="usd">USD</option>
                 <option value="eur">EUR</option>
@@ -44,52 +46,85 @@
 
         </div>
         <p id="rate"></p>
-        <p>No transfer fee</p>
-
-
+        <p id="fee"  style="visibility:hidden">No transfer fee</p>
     </div>
 </div>
 
 <script th:inline="javascript">
-    let firstCurSel = document.getElementById('firstCur');
-    let secondCurSel = document.getElementById('secondCur');
-    var exchangeRate = /*[[${exchangeRate}]]*/ "";
-    //document.getElementById("rate").innerHTML = "1 "+firstCurSel.value+" = " + (exchangeRate).toFixed(2) + " "+secondCurSel.value;
-    let currencyGBP = document.getElementById('firstCurInp');
-    let currencyPLN = document.getElementById('secondCurInp');
+    var request = new XMLHttpRequest();
+    var ex1;
+    var ex2;
 
+    let firstCurSelection = document.getElementById('firstCur');
+    let secondCurSelection = document.getElementById('secondCur');
 
-    currencyGBP.addEventListener('input', calculatePLN);
-    currencyPLN.addEventListener('input', calculateGBP);
+    let firstCurInput = document.getElementById('firstCurInp');
+    let secondCurInput  = document.getElementById('secondCurInp');
 
-    function calculatePLN() {
-        currencyPLN.value = (currencyGBP.value * exchangeRate).toFixed(2);
-    }
+    firstCurInput.addEventListener('input', calculateSecondCur);
+    secondCurInput.addEventListener('input', calculateFirstCur);
 
-    function calculateGBP() {
-        currencyGBP.value = (currencyPLN.value / exchangeRate).toFixed(2);
-    }
+    firstCurInput.disabled = true;
+    secondCurInput.disabled = true;
 
-    // let firstCur = document.getElementById('firstCur');
-    // currencyGBP.addEventListener('click', doSm);
-
-
-    function doSm1() {
-        alert(firstCurSel.value);
-        changeInfo();
-    }
-
-    function doSm2() {
-        alert(secondCurSel.value);
-        changeInfo();
-    }
-
-    function  changeInfo() {
-        if (firstCurSel.value!="none" && secondCurSel.value!="none"){
-            document.getElementById("rate").innerHTML = "1 "+firstCurSel.value+" = " + (exchangeRate).toFixed(2) + " "+secondCurSel.value;
+    function firstSelected(){
+        getFirstExRate();
+        checkIfBothSelected();
+        if(secondCurInput.value.length>0){
+            calculateSecondCur();
         }
 
     }
+
+    function  secondSelected(){
+        getSecondExRate();
+        checkIfBothSelected();
+        if(firstCurInput.value.length>0){
+            calculateSecondCur();
+        }
+
+    }
+
+
+    function checkIfBothSelected(){
+        if (firstCurSelection.value!="none" && secondCurSelection.value!="none"){
+            document.getElementById("rate").innerHTML = "1 "+firstCurSelection.value+" = " + (ex1/ex2).toFixed(4) + " "+secondCurSelection.value;
+            document.getElementById("fee").style.visibility = "visible";
+            firstCurInput.disabled = false;
+            secondCurInput.disabled = false;
+        }
+    }
+    function calculateFirstCur() {
+        firstCurInput.value = (secondCurInput.value*(ex2/ex1)).toFixed(4);
+    }
+
+    function calculateSecondCur() {
+        secondCurInput.value = (firstCurInput.value*(ex1/ex2)).toFixed(4);
+    }
+
+    //My try
+    function getFirstExRate() {
+        request.open("POST","/submitFirstCur",false);
+        request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        request.onreadystatechange = function() {
+            if(request.readyState === XMLHttpRequest.DONE && request.status===200){
+                ex1 = request.response;
+            }
+        };
+        request.send(JSON.stringify({chosenFirstCur : firstCurSelection.value}));
+    }
+
+    function getSecondExRate() {
+        request.open("POST","/submitSecondCur",false);
+        request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        request.onreadystatechange = function() {
+            if(request.readyState === XMLHttpRequest.DONE && request.status===200){
+                ex2 = request.response;
+            }
+        };
+        request.send(JSON.stringify({chosenSecondCur : secondCurSelection.value}));
+    }
+
 </script>
 
 </body>
