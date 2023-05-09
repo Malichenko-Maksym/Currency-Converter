@@ -1,0 +1,97 @@
+
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+label {
+    display: block;
+    font: 1rem 'Aboreto', sans-serif;
+    font-family: cursive;
+    font-size: 32px;
+    color: #2140A8;
+    margin: 0.4rem 0;
+
+}
+
+input{
+    margin: 0.4rem 0;
+
+}
+
+
+#pln {
+    background-image: url(https://www.freepik.com/free-photo/tulips-bouquet-pink-background-with-copyspace_3948708.htm#query=flower&position=0&from_view=keyword&track=sph);
+    background-repeat: no-repeat;
+    background-position: 2px 3px;
+}
+
+.container {
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       text-align: center;
+       align-content: center;
+       min-height: 100vh;
+
+   }
+
+
+  body{
+      background-color: #0A0A0A;
+  }
+
+  .icon{
+      border-radius: 15px;
+      font-family: 'Aboreto';
+      width: 100%;
+      border: 2px solid #9b9b9b;
+      outline: 0;
+      font-size: 1.3rem;
+      color: #fff;
+      padding: 7px 0;
+      background: transparent;
+      transition: border-color 0.3s;
+
+  }
+
+  .form__group {
+      padding: 15px 0 0;
+      margin-top: 10px;
+}
+
+
+.finalText{
+    display: block;
+    font: 1rem 'Aboreto', sans-serif;
+    font-family: cursive;
+    font-size: 18px;
+    color: #2140A8;
+    margin: 0.4rem 0;
+}
+
+.box select {
+    border-radius: 15px;
+    background-color: #0A0A0A;
+    color: white;
+    padding: 12px;
+    border: 2px solid #9b9b9b;
+    font-size: 14px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    -webkit-appearance: button;
+    outline: none;
+    text-align: center;
+}
+
+.box select option {
+    padding: 24px;
+    text-align: center;
+}
+

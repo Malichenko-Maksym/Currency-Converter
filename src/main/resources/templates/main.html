@@ -5,15 +5,17 @@
     <title>Currency exchange</title>
     <link rel="icon" type="image/x-icon" href="../static/images/favicon.png">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/css/style.css">
 </head>
 
 <body>
 <div class="container">
     <div class="child">
         <div class="currency">
+            <div class="form__group field">
             <label>You send</label>
-            <p><select id="firstCur" name="firstCur" onchange="firstSelected()">
+
+           <p> <div class="box"> <select id="firstCur" name="firstCur" onchange="firstSelected()">
                 <option disabled selected value="none">First currency</option>
                 <option value="usd" >$&emsp;USD&emsp;</option>
                 <option value="eur">€&emsp;EUR&emsp;</option>
@@ -21,15 +23,19 @@
                 <option value="gbp">£&emsp;GBP&emsp;</option>
                 <option value="chf">Fr.&emsp;CHF&emsp;</option>
                 <option value="pln">zł&emsp;PLN&emsp;</option>
-            </select>
-                :
-                <input id="firstCurInp" type="number" class="icon" min="0" step="any" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107
-                    && event.keyCode !== 189 && event.keyCode !== 187"></p>
+            </select> </div>
+
+
+
+                    <input id="firstCurInp" type="number" class="icon" min="0" step="any" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107
+                        && event.keyCode !== 189 && event.keyCode !== 187"> </p>
+                </div>
         </div>
 
         <div class="currency">
+            <div class="form__group field">
             <label >They receive</label>
-            <p> <select id="secondCur" name="secondCur" onchange="secondSelected()">
+            <p> <div class="box"> <select id="secondCur" name="secondCur" onchange="secondSelected()">
                 <option disabled selected value="none">Second currency</option>
                 <option value="usd" >$&emsp;USD&emsp;</option>
                 <option value="eur">€&emsp;EUR&emsp;</option>
@@ -37,14 +43,18 @@
                 <option value="gbp">£&emsp;GBP&emsp;</option>
                 <option value="chf">Fr.&emsp;CHF&emsp;</option>
                 <option value="pln">zł&emsp;PLN&emsp;</option>
-            </select>
-                :
-                <input id="secondCurInp" type="number" min="0" step="any" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107
-                    && event.keyCode !== 189 && event.keyCode !== 187"></p>
+            </select> </div>
 
+                <input id="secondCurInp" type="number" class="icon" min="0" step="any" onkeydown="return event.keyCode !== 69 && event.keyCode !== 109 && event.keyCode !== 107
+                    && event.keyCode !== 189 && event.keyCode !== 187"></p>
+            </div>
         </div>
-        <p id="rate"></p>
-        <p id="fee"  style="visibility:hidden">No transfer fee</p>
+
+        <div class="finalText">
+            <p id="rate"></p>
+            <p id="fee"  style="visibility:hidden">No transfer fee</p>
+        </div>
+
     </div>
 </div>
 
