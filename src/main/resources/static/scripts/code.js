@@ -11,11 +11,14 @@ let secondCurInput  = document.getElementById('secondCurInp');
 firstCurInput.addEventListener('input', calculateSecondCur);
 secondCurInput.addEventListener('input', calculateFirstCur);
 
+firstCurInput.hidden  = true;
+secondCurInput.hidden  = true;
 
 function regExCheckKeydown(event,elemId) {
     let currentElem = document.getElementById(elemId);
     const regex = /(^[1-9][0-9]*([\.,][0-9]*)?$)|(^0([\.,][0-9]*)?$)/;
     let keyPressed = event.key;
+    //write for phones
     if (keyPressed === null || keyPressed === "Backspace" || regex.test(currentElem.value + keyPressed)) {
         if(keyPressed===','){
             event.preventDefault();
@@ -26,22 +29,17 @@ function regExCheckKeydown(event,elemId) {
     }
 }
 
-firstCurInput.hidden  = true;
-secondCurInput.hidden  = true;
-
-function firstSelected(){
-    ex1=getExchangeRate(firstCurSelection);
-    showNotation();
-    if(secondCurInput.value.length>0){
-        calculateSecondCur();
-    }
-}
-function secondSelected(){
-    ex2=getExchangeRate(secondCurSelection);
-    showNotation();
-    if(firstCurInput.value.length>0){
-        calculateSecondCur();
-    }
+function getExchangeRate(chosenSelector) {
+    let answer;
+    request.open("POST","/submitFirstCur",false);
+    request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    request.onreadystatechange = function() {
+        if(request.readyState === XMLHttpRequest.DONE && request.status===200){
+            answer = request.response;
+        }
+    };
+    request.send(JSON.stringify({chosenFirstCur : chosenSelector.value}));
+    return answer;
 }
 
 function showNotation(){
@@ -71,15 +69,17 @@ function calculateSecondCur() {
     }
 }
 
-function getExchangeRate(chosenSelector) {
-    let answer;
-    request.open("POST","/submitFirstCur",false);
-    request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    request.onreadystatechange = function() {
-        if(request.readyState === XMLHttpRequest.DONE && request.status===200){
-            answer = request.response;
-        }
-    };
-    request.send(JSON.stringify({chosenFirstCur : chosenSelector.value}));
-    return answer;
+function firstSelected(){
+    ex1=getExchangeRate(firstCurSelection);
+    showNotation();
+    if(secondCurInput.value.length>0){
+        calculateSecondCur();
+    }
+}
+function secondSelected(){
+    ex2=getExchangeRate(secondCurSelection);
+    showNotation();
+    if(firstCurInput.value.length>0){
+        calculateSecondCur();
+    }
 }
