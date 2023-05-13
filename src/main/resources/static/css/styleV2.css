@@ -1,0 +1,206 @@
+
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+label {
+    display: block;
+    font: 1rem 'Aboreto', sans-serif;
+    font-family: cursive;
+    font-size: 32px;
+    color: #7313cc;
+    margin: 0.4rem 0;
+
+}
+
+input{
+    margin: 0.4rem 0;
+
+}
+
+
+#pln {
+    background-image: url(https://www.freepik.com/free-photo/tulips-bouquet-pink-background-with-copyspace_3948708.htm#query=flower&position=0&from_view=keyword&track=sph);
+    background-repeat: no-repeat;
+    background-position: 2px 3px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    min-height: 100vh;
+
+}
+
+
+body{
+    background-color: #0A0A0A;
+
+}
+
+.icon{
+    border-radius: 15px;
+    font-family: 'Aboreto';
+    width: 100%;
+    border: 2px solid #9b9b9b;
+    outline: 0;
+    font-size: 1.3rem;
+    color: #fff;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.3s;
+
+}
+
+.form__group {
+    padding: 15px 0 0;
+    margin-top: 10px;
+}
+
+
+.finalText{
+    display: block;
+    font: 1rem 'Aboreto', sans-serif;
+    font-family: cursive;
+    font-size: 18px;
+    color: #7313cc;
+    margin: 0.4rem 0;
+}
+
+.box select {
+    border-radius: 15px;
+    background-color: #0A0A0A;
+    color: white;
+    padding: 12px;
+    border: 2px solid #9b9b9b;
+    font-size: 14px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    -webkit-appearance: button;
+    outline: none;
+    text-align: center;
+}
+
+.box select option {
+    padding: 24px;
+    text-align: center;
+}
+
+button {
+    border-radius: 15px;
+    position: relative;
+    background: #0A0A0A;
+    color:  var(--clr);
+    text-decoration: none;
+    text-transform: uppercase;
+    border: none;
+    letter-spacing: 0.1rem;
+    font-size: 1rem;
+    padding: 1rem 3rem;
+    transition: 0.2s;
+}
+
+button:hover {
+    border-radius: 15px;
+    letter-spacing: 0.2rem;
+    padding: 1.1rem 3.1rem;
+    background: var(--clr);
+    color: var(--clr);
+    box-shadow: 0 0 35px var(--clr);
+    animation: box 3s infinite;
+}
+
+button::before {
+    border-radius: 15px;
+    content: "";
+    position: absolute;
+    inset: 2px;
+    background: #0A0A0A;
+}
+
+button span {
+    border-radius: 15px;
+    position: relative;
+    z-index: 1;
+}
+button i {
+    border-radius: 15px;
+    position: absolute;
+    inset: 0;
+    display: block;
+}
+
+button i::before {
+    border-radius: 15px;
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 2px;
+    left: 80%;
+    top: -2px;
+    border: 2px solid var(--clr);
+    background: #0A0A0A;
+    transition: 0.2s;
+}
+
+button:hover i::before {
+    border-radius: 15px;
+    width: 15px;
+    left: 20%;
+    animation: move 3s infinite;
+}
+
+button i::after {
+    border-radius: 15px;
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 2px;
+    left: 20%;
+    bottom: -2px;
+    border: 2px solid var(--clr);
+    background: #0A0A0A;
+    transition: 0.2s;
+}
+
+button:hover i::after {
+    border-radius: 15px;
+    width: 15px;
+    left: 80%;
+    animation: move 3s infinite;
+}
+
+@keyframes move {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes box {
+    0% {
+        box-shadow: #27272c;
+    }
+    50% {
+        box-shadow: 0 0 25px var(--clr);
+    }
+    100% {
+        box-shadow: #27272c;
+    }
+}
+
