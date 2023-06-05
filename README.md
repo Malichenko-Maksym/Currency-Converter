@@ -1,5 +1,5 @@
 # Exchange
-Web site with task: https://currency-converter.up.railway.app/
+Web site with task: https://exchange-production.up.railway.app/
 
 		Warning: this link doesn't always active (I have time limit for using this server)
 		
