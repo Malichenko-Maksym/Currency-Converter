@@ -10,4 +10,3 @@ Another way to run application:
 Run "./mvnw spring-boot:run" in a root-folder.\
 In that case, you can see the result by typing "localhost:8080" in your browser, unless your use different port
 
-https://docs.google.com/forms/d/e/1FAIpQLSfBagOThJDzSxN4DO99oHZU9iEsy3JmI3pxobVRjO_gVN4pJw/viewform
